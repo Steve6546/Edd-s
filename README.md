@@ -1,284 +1,244 @@
-# 💬 WhatsApp Clone
+# Chat Application
 
-A full-featured real-time messaging application built with **Encore.ts** and **React**, featuring end-to-end encrypted messaging, voice/video calls, status updates, and group chat functionality.
+A full-stack real-time chat application built with Encore.ts and React, featuring voice/video calls, group chats, status updates, and more.
 
-## ✨ Features
+## Features
 
-### 🔐 Authentication & User Management
-- User registration with email/password
-- Profile setup with username and display name
-- Avatar upload support
-- Username availability checking
-- Profile cooldown management
+### Core Features
+- **Real-time Messaging**: Send and receive messages instantly with WebSocket support
+- **Group Chats**: Create and manage group conversations with admin controls
+- **Voice & Video Calls**: One-on-one voice and video calling with WebRTC
+- **Status Updates**: Share temporary status updates (similar to WhatsApp Stories)
+- **Friend System**: Send and manage friend requests
+- **User Presence**: See who's online and typing indicators
+- **Message Features**:
+  - Text messages with rich formatting
+  - Voice notes recording and playback
+  - File attachments (images, videos, documents)
+  - Message reactions (emojis)
+  - Edit and delete messages
+  - Pin important messages
+  - Message read receipts
 
-### 💬 Real-time Messaging
-- One-on-one chat
-- Group chat with admin controls
-- Message reactions
-- Message replies (threading)
-- Message editing and deletion
-- Read receipts
-- Typing indicators
-- Message attachments (images, videos, documents)
-- Voice notes
-- Message pinning
-- Message statistics
+### Advanced Features
+- **User Authentication**: Secure signup and login
+- **Profile Management**: Custom avatars, usernames, and bios
+- **Search**: Find users and messages
+- **Notifications**: Real-time push notifications
+- **Message Statistics**: View message counts and engagement
+- **Mute Conversations**: Silence notifications for specific chats
+- **Group Admin Controls**: Add/remove members, update settings
 
-### 👥 Social Features
-- Friend request system
-- User search
-- Online/offline presence
-- Custom user status
-- 24-hour status updates with view tracking
-
-### 📞 Voice & Video Calls
-- One-on-one voice calls
-- One-on-one video calls
-- WebRTC-based real-time communication
-- Call notifications
-- Call accept/reject/end
-
-### 🔔 Real-time Notifications
-- Push notifications for messages
-- Friend request notifications
-- Call notifications
-- Real-time notification stream
-
-### 🎨 UI/UX
-- Modern, responsive design
-- Dark mode support
-- Skeleton loaders
-- Image viewer
-- Video player
-- Smooth animations
-- Mobile-friendly interface
-
-## 🏗️ Tech Stack
+## Tech Stack
 
 ### Backend
-- **Encore.ts** - Backend framework with built-in infrastructure
-- **PostgreSQL** - Database
-- **Pub/Sub** - Real-time messaging
-- **Object Storage** - File uploads (avatars, attachments)
-- **WebSocket Streams** - Real-time data streaming
+- **Encore.ts**: TypeScript backend framework
+- **PostgreSQL**: Database for persistent storage
+- **WebSocket Streams**: Real-time communication
+- **Object Storage**: For file uploads (avatars, attachments)
+- **Pub/Sub**: Event-driven architecture for notifications
 
 ### Frontend
-- **React 18** - UI library
-- **TypeScript** - Type safety
-- **Vite** - Build tool
-- **Tailwind CSS v4** - Styling
-- **shadcn/ui** - Component library
-- **Lucide React** - Icons
-- **TanStack Query** - Data fetching
-- **WebRTC** - Voice/video calls
+- **React**: UI library
+- **TypeScript**: Type-safe development
+- **Vite**: Fast build tool
+- **Tailwind CSS v4**: Utility-first styling
+- **shadcn/ui**: Component library
+- **WebRTC**: Peer-to-peer calling
+- **React Query**: Server state management
 
-## 📋 Prerequisites
+## Prerequisites
 
-- **Node.js** 18+ 
-- **Encore CLI** - [Install Encore](https://encore.dev/docs/install)
-- **PostgreSQL** (managed by Encore)
+- **Node.js**: v18 or higher
+- **Encore CLI**: Install from [encore.dev](https://encore.dev)
+- **PostgreSQL**: For local development (automatically provisioned by Encore)
 
-## 🚀 Installation
+## Installation
 
-1. **Clone the repository**
+1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd whatsapp-clone
+cd <project-directory>
 ```
 
-2. **Install Encore CLI** (if not already installed)
+2. Install dependencies:
 ```bash
-curl -L https://encore.dev/install.sh | bash
+# Dependencies are automatically installed by Encore
+encore run
 ```
 
-3. **Run the application**
+3. The application will start automatically:
+- Frontend: https://proj-d4di27482vjqr515gls0.lp.dev
+- Backend API: https://proj-d4di27482vjqr515gls0.api.lp.dev
+
+## Project Structure
+
+```
+.
+├── backend/                  # Backend services
+│   ├── auth/                # Authentication service
+│   ├── call/                # Voice/video calling
+│   ├── chat/                # Chat management
+│   ├── message/             # Message handling
+│   ├── status/              # Status updates
+│   ├── user/                # User profiles
+│   ├── friend/              # Friend requests
+│   ├── presence/            # Online status
+│   ├── notification/        # Notifications
+│   ├── db/                  # Database setup
+│   │   └── migrations/      # SQL migrations
+│   └── common/              # Shared utilities
+│
+├── frontend/                # React frontend
+│   ├── components/          # Reusable components
+│   │   └── ui/             # shadcn/ui components
+│   ├── pages/              # Page components
+│   ├── contexts/           # React contexts
+│   └── lib/                # Utilities
+│
+└── .github/                # GitHub templates
+    ├── ISSUE_TEMPLATE/     # Issue templates
+    └── PULL_REQUEST_TEMPLATE.md
+```
+
+## Development
+
+### Running Locally
+
 ```bash
 encore run
 ```
 
-Encore will automatically:
-- Install all dependencies (backend & frontend)
-- Set up the PostgreSQL database
-- Run database migrations
-- Start the backend API
-- Start the frontend dev server
+This command:
+- Starts the backend services
+- Provisions a local PostgreSQL database
+- Runs database migrations
+- Starts the frontend dev server
+- Opens the application in your browser
 
-4. **Access the application**
-- Frontend: http://localhost:4000
-- Backend API: http://localhost:4000/api
-- Encore Dev Dashboard: http://localhost:9400
+### Running Tests
 
-## 📁 Project Structure
+```bash
+# Backend tests
+cd backend && npm test
 
-```
-/
-├── backend/                  # Backend services
-│   ├── auth/                # Authentication service
-│   ├── user/                # User management
-│   ├── friend/              # Friend request system
-│   ├── chat/                # Chat management
-│   ├── message/             # Message handling
-│   ├── call/                # Voice/video calls
-│   ├── status/              # Status updates
-│   ├── notification/        # Notifications
-│   ├── presence/            # Online/offline status
-│   ├── db/                  # Database setup & migrations
-│   └── common/              # Shared utilities
-│
-├── frontend/                # Frontend application
-│   ├── components/          # Reusable components
-│   ├── pages/               # Page components
-│   ├── contexts/            # React contexts
-│   ├── lib/                 # Utilities
-│   └── App.tsx              # Main app component
-│
-├── .github/                 # GitHub templates
-│   ├── ISSUE_TEMPLATE/      # Issue templates
-│   └── PULL_REQUEST_TEMPLATE.md
-│
-├── README.md                # Project documentation
-├── CONTRIBUTING.md          # Contribution guidelines
-├── CODE_OF_CONDUCT.md       # Community guidelines
-├── SECURITY.md              # Security policy
-└── LICENSE                  # License file
+# Frontend tests
+cd frontend && npm test
 ```
 
-## 🎯 API Overview
+### Building for Production
 
-### Services
+```bash
+# Encore handles deployment automatically
+encore deploy
+```
 
-- **auth** - User authentication and authorization
-- **user** - Profile management, search, avatars
-- **friend** - Friend requests and connections
-- **chat** - Chat creation and management
-- **message** - Sending, editing, deleting messages
-- **call** - WebRTC signaling and call management
-- **status** - 24-hour status updates
-- **notification** - Real-time notifications
-- **presence** - Online status and typing indicators
+## Usage Examples
 
-### Real-time Streams
+### Sending a Message
 
-- **message.stream** - Real-time message updates
-- **notification.stream** - Real-time notifications
-- **presence.stream** - Online status updates
-- **call.stream** - Call signaling
-
-## 💡 Usage Examples
-
-### Create a Chat
 ```typescript
 import backend from '~backend/client';
 
-const chat = await backend.chat.create({
-  participantId: 'user-id'
-});
-```
-
-### Send a Message
-```typescript
 const message = await backend.message.send({
-  chatId: 'chat-id',
-  content: 'Hello!',
+  chatId: 'chat_123',
+  content: 'Hello, World!',
   type: 'text'
 });
 ```
 
-### Start a Call
+### Creating a Group Chat
+
 ```typescript
-const call = await backend.call.initiate({
-  receiverId: 'user-id',
-  type: 'video'
+const group = await backend.chat.createGroup({
+  name: 'Team Chat',
+  description: 'Our team discussions',
+  participantIds: ['user1', 'user2', 'user3']
 });
 ```
 
-### Subscribe to Messages
+### Initiating a Call
+
 ```typescript
-const stream = await backend.message.stream();
-for await (const msg of stream) {
-  console.log('New message:', msg);
-}
+const call = await backend.call.initiate({
+  receiverId: 'user_456',
+  callType: 'video'
+});
 ```
 
-## 🔧 Environment Configuration
+## Database Schema
 
-Encore handles all infrastructure automatically. For production deployments, configure secrets in the Encore Cloud dashboard:
+The application uses PostgreSQL with the following main tables:
+- `users`: User accounts and profiles
+- `chats`: Chat conversations (direct and group)
+- `messages`: Chat messages
+- `friend_requests`: Friend relationships
+- `status_updates`: Temporary status posts
+- `calls`: Call history and metadata
+- `notifications`: User notifications
 
-- Database connection (automatic)
-- Object storage (automatic)
-- Custom API keys (if needed)
+## API Documentation
 
-## 🧪 Testing
-
-```bash
-encore test
+All API endpoints are automatically documented by Encore. Access the API explorer at:
+```
+https://app.encore.dev/<your-app-id>
 ```
 
-Run frontend tests:
-```bash
-cd frontend
-npm test
-```
+## Security
 
-## 🚢 Deployment
+- All API endpoints use authentication
+- Passwords are hashed using bcrypt
+- WebSocket connections are authenticated
+- File uploads are validated and sanitized
+- SQL injection protection through parameterized queries
+- XSS protection through React's built-in sanitization
 
-Deploy to Encore Cloud:
+See [SECURITY.md](SECURITY.md) for reporting vulnerabilities.
 
-```bash
-git push encore main
-```
+## Contributing
 
-Encore automatically:
-- Builds the application
-- Provisions infrastructure
-- Runs migrations
-- Deploys frontend and backend
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-## 🗺️ Roadmap
+## Code of Conduct
+
+This project follows a Code of Conduct. See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for details.
+
+## Roadmap
 
 ### Planned Features
 - [ ] End-to-end encryption
-- [ ] Group voice/video calls
-- [ ] Message forwarding
-- [ ] Channel/broadcast support
-- [ ] Media gallery
-- [ ] Message search
-- [ ] Chat backup/export
-- [ ] Desktop notifications
-- [ ] PWA support
-- [ ] Multi-device sync
-- [ ] Stickers and GIFs
-- [ ] Location sharing
-- [ ] Contact sharing
-- [ ] Poll creation
-- [ ] Disappearing messages
+- [ ] Message search functionality
+- [ ] Rich text editor for messages
+- [ ] Custom emoji reactions
+- [ ] Voice/video group calls
+- [ ] Screen sharing
+- [ ] Message threading/replies
+- [ ] Scheduled messages
+- [ ] Chat backup and export
+- [ ] Dark/light theme toggle
+- [ ] Mobile app (React Native)
+- [ ] Desktop app (Electron)
 
 ### Performance Improvements
 - [ ] Message pagination optimization
 - [ ] Image lazy loading
-- [ ] Service worker caching
+- [ ] Service worker for offline support
+- [ ] CDN integration for media files
 - [ ] Database query optimization
-- [ ] CDN integration
+- [ ] Redis caching layer
 
-## 🤝 Contributing
-
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
-
-## 📜 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🔒 Security
+## Support
 
-Please report security vulnerabilities to our security team. See [SECURITY.md](SECURITY.md) for details.
+For support, please:
+1. Check existing [Issues](https://github.com/<your-repo>/issues)
+2. Create a new issue using the appropriate template
+3. Join our community discussions
 
-## 📞 Support
-
-- [Documentation](https://encore.dev/docs)
-- [Discord Community](https://encore.dev/discord)
-- [GitHub Issues](../../issues)
-
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Built with [Encore.ts](https://encore.dev)
 - UI components from [shadcn/ui](https://ui.shadcn.com)
