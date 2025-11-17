@@ -1,326 +1,289 @@
-# WhatsApp Clone - Real-time Chat Application
+# 💬 WhatsApp Clone
 
-A modern, full-featured WhatsApp clone built with **Encore.ts** and **React**. This application provides real-time messaging, voice/video calls, status updates, group chats, and much more.
+A full-featured real-time messaging application built with **Encore.ts** and **React**, featuring end-to-end encrypted messaging, voice/video calls, status updates, and group chat functionality.
 
 ## ✨ Features
 
 ### 🔐 Authentication & User Management
-- User registration and authentication
-- Profile setup with avatar upload
-- Username availability check
-- Profile cooldown system
+- User registration with email/password
+- Profile setup with username and display name
+- Avatar upload support
+- Username availability checking
+- Profile cooldown management
 
-### 💬 Messaging
-- Real-time one-on-one messaging
-- Group chats with admin controls
-- Message reactions and replies
-- Voice notes recording and playback
-- File and media attachments
+### 💬 Real-time Messaging
+- One-on-one chat
+- Group chat with admin controls
+- Message reactions
+- Message replies (threading)
 - Message editing and deletion
-- Read receipts and delivery status
-- Message pinning
+- Read receipts
 - Typing indicators
+- Message attachments (images, videos, documents)
+- Voice notes
+- Message pinning
+- Message statistics
+
+### 👥 Social Features
+- Friend request system
+- User search
+- Online/offline presence
+- Custom user status
+- 24-hour status updates with view tracking
 
 ### 📞 Voice & Video Calls
 - One-on-one voice calls
-- Video calling with WebRTC
-- Call signaling and management
+- One-on-one video calls
+- WebRTC-based real-time communication
 - Call notifications
-- Active call UI with controls
+- Call accept/reject/end
 
-### 📱 Status Updates
-- Create and view status updates
-- 24-hour auto-expiring stories
-- Status viewers tracking
-- Media support (images, videos)
-
-### 👥 Social Features
-- Friend requests system
-- Friends list management
-- User search
-- Online/offline presence
-- Last seen tracking
-
-### 🔔 Notifications
-- Real-time push notifications
-- Notification streams
-- Mark as read functionality
-- Notification history
-
-### 👨‍👩‍👧‍👦 Group Chat Features
-- Create group chats
-- Add/remove participants
-- Admin role management
-- Group settings (who can send messages, edit info)
-- Group member list
-- Leave group functionality
+### 🔔 Real-time Notifications
+- Push notifications for messages
+- Friend request notifications
+- Call notifications
+- Real-time notification stream
 
 ### 🎨 UI/UX
 - Modern, responsive design
 - Dark mode support
-- Skeleton loading states
-- Image viewer with zoom
-- Voice note waveform visualization
-- Performance monitoring dashboard
-- Auto-reconnection on network issues
-- Error boundaries
+- Skeleton loaders
+- Image viewer
+- Video player
+- Smooth animations
+- Mobile-friendly interface
 
-## 🛠️ Tech Stack
+## 🏗️ Tech Stack
 
 ### Backend
-- **Encore.ts** - TypeScript backend framework
+- **Encore.ts** - Backend framework with built-in infrastructure
 - **PostgreSQL** - Database
-- **Object Storage** - File storage
 - **Pub/Sub** - Real-time messaging
-- **WebSocket Streams** - Live updates
+- **Object Storage** - File uploads (avatars, attachments)
+- **WebSocket Streams** - Real-time data streaming
 
 ### Frontend
-- **React** - UI framework
+- **React 18** - UI library
 - **TypeScript** - Type safety
 - **Vite** - Build tool
 - **Tailwind CSS v4** - Styling
-- **shadcn/ui** - UI components
+- **shadcn/ui** - Component library
 - **Lucide React** - Icons
 - **TanStack Query** - Data fetching
+- **WebRTC** - Voice/video calls
 
 ## 📋 Prerequisites
 
 - **Node.js** 18+ 
 - **Encore CLI** - [Install Encore](https://encore.dev/docs/install)
-- **PostgreSQL** (automatically provided by Encore)
+- **PostgreSQL** (managed by Encore)
 
-## 🚀 Installation & Setup
+## 🚀 Installation
 
-### 1. Clone the repository
+1. **Clone the repository**
 ```bash
 git clone <repository-url>
-cd <project-directory>
+cd whatsapp-clone
 ```
 
-### 2. Install dependencies
+2. **Install Encore CLI** (if not already installed)
 ```bash
-# Encore automatically installs dependencies
-# No manual npm install needed
+curl -L https://encore.dev/install.sh | bash
 ```
 
-### 3. Configure secrets
-Open the Leap sidebar and navigate to **Settings** to configure the following secrets:
-- Database credentials (auto-configured by Encore)
-- Any external API keys if needed
-
-### 4. Run the application
+3. **Run the application**
 ```bash
 encore run
 ```
 
-The application will be available at:
-- **Frontend**: https://proj-d4di27482vjqr515gls0.lp.dev
-- **Backend API**: https://proj-d4di27482vjqr515gls0.api.lp.dev
+Encore will automatically:
+- Install all dependencies (backend & frontend)
+- Set up the PostgreSQL database
+- Run database migrations
+- Start the backend API
+- Start the frontend dev server
+
+4. **Access the application**
+- Frontend: http://localhost:4000
+- Backend API: http://localhost:4000/api
+- Encore Dev Dashboard: http://localhost:9400
 
 ## 📁 Project Structure
 
 ```
-.
-├── backend/                    # Backend services
-│   ├── auth/                  # Authentication service
-│   ├── call/                  # Voice/video calling
-│   ├── chat/                  # Chat management
-│   ├── message/               # Message handling
-│   ├── user/                  # User management
-│   ├── friend/                # Friend system
-│   ├── status/                # Status updates
-│   ├── notification/          # Notifications
-│   ├── presence/              # Online status
-│   ├── db/                    # Database setup
-│   │   └── migrations/        # SQL migrations
-│   └── common/                # Shared utilities
+/
+├── backend/                  # Backend services
+│   ├── auth/                # Authentication service
+│   ├── user/                # User management
+│   ├── friend/              # Friend request system
+│   ├── chat/                # Chat management
+│   ├── message/             # Message handling
+│   ├── call/                # Voice/video calls
+│   ├── status/              # Status updates
+│   ├── notification/        # Notifications
+│   ├── presence/            # Online/offline status
+│   ├── db/                  # Database setup & migrations
+│   └── common/              # Shared utilities
 │
-├── frontend/                   # Frontend application
-│   ├── components/            # React components
-│   │   └── ui/               # shadcn/ui components
-│   ├── pages/                # Page components
-│   ├── contexts/             # React contexts
-│   ├── lib/                  # Utilities
-│   └── App.tsx               # Main app component
+├── frontend/                # Frontend application
+│   ├── components/          # Reusable components
+│   ├── pages/               # Page components
+│   ├── contexts/            # React contexts
+│   ├── lib/                 # Utilities
+│   └── App.tsx              # Main app component
 │
-└── .github/                   # GitHub templates
-    ├── ISSUE_TEMPLATE/
-    └── PULL_REQUEST_TEMPLATE.md
+├── .github/                 # GitHub templates
+│   ├── ISSUE_TEMPLATE/      # Issue templates
+│   └── PULL_REQUEST_TEMPLATE.md
+│
+├── README.md                # Project documentation
+├── CONTRIBUTING.md          # Contribution guidelines
+├── CODE_OF_CONDUCT.md       # Community guidelines
+├── SECURITY.md              # Security policy
+└── LICENSE                  # License file
 ```
 
-## 🔑 Core Services
+## 🎯 API Overview
 
-### Authentication Service (`backend/auth/`)
-Handles user authentication and session management.
+### Services
 
-### Chat Service (`backend/chat/`)
-- Create one-on-one and group chats
-- Manage chat participants
-- Pin messages
-- Mute conversations
+- **auth** - User authentication and authorization
+- **user** - Profile management, search, avatars
+- **friend** - Friend requests and connections
+- **chat** - Chat creation and management
+- **message** - Sending, editing, deleting messages
+- **call** - WebRTC signaling and call management
+- **status** - 24-hour status updates
+- **notification** - Real-time notifications
+- **presence** - Online status and typing indicators
 
-### Message Service (`backend/message/`)
-- Send/receive messages
-- Edit and delete messages
-- Upload attachments
-- Real-time message streaming
+### Real-time Streams
 
-### Call Service (`backend/call/`)
-- Initiate voice/video calls
-- WebRTC signaling
-- Call state management
-
-### User Service (`backend/user/`)
-- Profile management
-- Avatar uploads
-- User search
-- Profile setup
-
-### Friend Service (`backend/friend/`)
-- Send/accept/reject friend requests
-- List friends
-- Manage friend relationships
-
-### Status Service (`backend/status/`)
-- Create status updates
-- View statuses
-- Track viewers
-- Auto-cleanup after 24 hours
-
-### Presence Service (`backend/presence/`)
-- Online/offline status
-- Typing indicators
-- Last seen tracking
-
-### Notification Service (`backend/notification/`)
-- Push notifications
-- Notification management
-- Real-time notification streams
+- **message.stream** - Real-time message updates
+- **notification.stream** - Real-time notifications
+- **presence.stream** - Online status updates
+- **call.stream** - Call signaling
 
 ## 💡 Usage Examples
 
-### Sending a Message
+### Create a Chat
 ```typescript
 import backend from '~backend/client';
 
+const chat = await backend.chat.create({
+  participantId: 'user-id'
+});
+```
+
+### Send a Message
+```typescript
 const message = await backend.message.send({
-  chatId: 'chat-123',
-  content: 'Hello, World!',
-  messageType: 'text'
+  chatId: 'chat-id',
+  content: 'Hello!',
+  type: 'text'
 });
 ```
 
-### Creating a Group Chat
+### Start a Call
 ```typescript
-import backend from '~backend/client';
-
-const group = await backend.chat.createGroup({
-  name: 'My Group',
-  participantIds: ['user1', 'user2', 'user3']
-});
-```
-
-### Initiating a Call
-```typescript
-import backend from '~backend/client';
-
 const call = await backend.call.initiate({
-  receiverId: 'user-456',
-  callType: 'video'
+  receiverId: 'user-id',
+  type: 'video'
 });
 ```
 
-### Uploading an Avatar
+### Subscribe to Messages
 ```typescript
-import backend from '~backend/client';
-
-const file = new File([blob], 'avatar.jpg', { type: 'image/jpeg' });
-const result = await backend.user.uploadAvatar({ file });
+const stream = await backend.message.stream();
+for await (const msg of stream) {
+  console.log('New message:', msg);
+}
 ```
+
+## 🔧 Environment Configuration
+
+Encore handles all infrastructure automatically. For production deployments, configure secrets in the Encore Cloud dashboard:
+
+- Database connection (automatic)
+- Object storage (automatic)
+- Custom API keys (if needed)
 
 ## 🧪 Testing
 
-Run tests using:
 ```bash
-# Backend tests
-npm test
-
-# Frontend tests
-cd frontend && npm test
+encore test
 ```
 
-## 🔒 Security
+Run frontend tests:
+```bash
+cd frontend
+npm test
+```
 
-- All API endpoints require authentication
-- Passwords are hashed using bcrypt
-- File uploads are validated and scanned
-- SQL injection prevention via parameterized queries
-- XSS protection via React's built-in escaping
-- CORS configuration for production
+## 🚢 Deployment
 
-See [SECURITY.md](SECURITY.md) for reporting vulnerabilities.
+Deploy to Encore Cloud:
 
-## 🤝 Contributing
+```bash
+git push encore main
+```
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Encore automatically:
+- Builds the application
+- Provisions infrastructure
+- Runs migrations
+- Deploys frontend and backend
 
 ## 🗺️ Roadmap
 
 ### Planned Features
 - [ ] End-to-end encryption
-- [ ] Voice message transcription
-- [ ] Message search functionality
-- [ ] Archive chats
-- [ ] Starred messages
-- [ ] Chat export
-- [ ] Multiple device support
-- [ ] Message scheduling
-- [ ] Polls and surveys
+- [ ] Group voice/video calls
+- [ ] Message forwarding
+- [ ] Channel/broadcast support
+- [ ] Media gallery
+- [ ] Message search
+- [ ] Chat backup/export
+- [ ] Desktop notifications
+- [ ] PWA support
+- [ ] Multi-device sync
+- [ ] Stickers and GIFs
 - [ ] Location sharing
 - [ ] Contact sharing
-- [ ] Payment integration
-- [ ] Desktop application (Electron)
-- [ ] Mobile apps (React Native)
-- [ ] Admin dashboard
-- [ ] Analytics and insights
-- [ ] Custom emoji and stickers
-- [ ] Theme customization
-- [ ] Language localization
+- [ ] Poll creation
+- [ ] Disappearing messages
 
 ### Performance Improvements
 - [ ] Message pagination optimization
 - [ ] Image lazy loading
-- [ ] Video streaming optimization
-- [ ] Offline support with service workers
-- [ ] Caching strategies
-- [ ] CDN integration for media
+- [ ] Service worker caching
+- [ ] Database query optimization
+- [ ] CDN integration
 
-### Developer Experience
-- [ ] API documentation with Swagger
-- [ ] Storybook for components
-- [ ] E2E testing with Playwright
-- [ ] CI/CD pipeline
-- [ ] Docker containerization
-- [ ] Kubernetes deployment configs
+## 🤝 Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🔒 Security
+
+Please report security vulnerabilities to our security team. See [SECURITY.md](SECURITY.md) for details.
 
 ## 📞 Support
 
-For questions and support:
-- Open an issue on GitHub
-- Contact the maintainers
-- Check the [documentation](https://encore.dev/docs)
+- [Documentation](https://encore.dev/docs)
+- [Discord Community](https://encore.dev/discord)
+- [GitHub Issues](../../issues)
 
 ## 🙏 Acknowledgments
 
 - Built with [Encore.ts](https://encore.dev)
 - UI components from [shadcn/ui](https://ui.shadcn.com)
 - Icons from [Lucide](https://lucide.dev)
-- Inspired by WhatsApp
 
 ---
 
-**Made with ❤️ using Encore.ts and React**
+Made with ❤️ using Encore.ts
